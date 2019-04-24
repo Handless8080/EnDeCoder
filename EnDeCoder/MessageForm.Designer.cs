@@ -114,7 +114,7 @@
             this.Controls.Add(this.Title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MessageForm";
-            this.Text = "MessageInputForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -60,7 +60,6 @@
             this.SelectedIFileLbl = new System.Windows.Forms.Label();
             this.KeyboardInputBtn = new System.Windows.Forms.Button();
             this.TXTInputBtn = new System.Windows.Forms.Button();
-            this.WordInputBtn = new System.Windows.Forms.Button();
             this.OperateBtn = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -70,8 +69,9 @@
             this.SelectedOFileLbl = new System.Windows.Forms.Label();
             this.ScreenOutputBtn = new System.Windows.Forms.Button();
             this.TXTOutputBtn = new System.Windows.Forms.Button();
-            this.WordOutputBtn = new System.Windows.Forms.Button();
             this.StatusLbl = new System.Windows.Forms.Label();
+            this.WordOutputBtn = new System.Windows.Forms.Button();
+            this.WordInputBtn = new System.Windows.Forms.Button();
             this.KeysPanel.SuspendLayout();
             this.DataInputPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -213,6 +213,7 @@
             this.Key8TBox.Size = new System.Drawing.Size(152, 21);
             this.Key8TBox.TabIndex = 32;
             this.Key8TBox.Visible = false;
+            this.Key8TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key8Lbl
             // 
@@ -236,6 +237,7 @@
             this.Key7TBox.Size = new System.Drawing.Size(152, 21);
             this.Key7TBox.TabIndex = 30;
             this.Key7TBox.Visible = false;
+            this.Key7TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key7Lbl
             // 
@@ -259,6 +261,7 @@
             this.Key6TBox.Size = new System.Drawing.Size(152, 21);
             this.Key6TBox.TabIndex = 28;
             this.Key6TBox.Visible = false;
+            this.Key6TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key6Lbl
             // 
@@ -282,6 +285,7 @@
             this.Key5TBox.Size = new System.Drawing.Size(152, 21);
             this.Key5TBox.TabIndex = 26;
             this.Key5TBox.Visible = false;
+            this.Key5TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key5Lbl
             // 
@@ -305,6 +309,7 @@
             this.Key4TBox.Size = new System.Drawing.Size(152, 21);
             this.Key4TBox.TabIndex = 24;
             this.Key4TBox.Visible = false;
+            this.Key4TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key4Lbl
             // 
@@ -328,6 +333,7 @@
             this.Key3TBox.Size = new System.Drawing.Size(152, 21);
             this.Key3TBox.TabIndex = 22;
             this.Key3TBox.Visible = false;
+            this.Key3TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key3Lbl
             // 
@@ -350,6 +356,7 @@
             this.Key2TBox.Name = "Key2TBox";
             this.Key2TBox.Size = new System.Drawing.Size(152, 21);
             this.Key2TBox.TabIndex = 20;
+            this.Key2TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key2Lbl
             // 
@@ -371,6 +378,7 @@
             this.Key1TBox.Name = "Key1TBox";
             this.Key1TBox.Size = new System.Drawing.Size(152, 21);
             this.Key1TBox.TabIndex = 18;
+            this.Key1TBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Key1TBox_KeyPress);
             // 
             // Key1Lbl
             // 
@@ -404,7 +412,16 @@
             this.EncodingTypeBox.Items.AddRange(new object[] {
             "Простая перестановка",
             "Простая перестановка по ключу",
-            "Двойная перестановка"});
+            "Двойная перестановка",
+            "AES",
+            "DES",
+            "3DES",
+            "RC2",
+            "RSA",
+            "DSA",
+            "Эль-Гамаля",
+            "Диффи-Хелмана",
+            "ECDSA"});
             this.EncodingTypeBox.Location = new System.Drawing.Point(3, 18);
             this.EncodingTypeBox.MaxDropDownItems = 5;
             this.EncodingTypeBox.Name = "EncodingTypeBox";
@@ -426,6 +443,7 @@
             this.GenKeysBtn.TabIndex = 0;
             this.GenKeysBtn.Text = "Сгенерировать ключи";
             this.GenKeysBtn.UseVisualStyleBackColor = false;
+            this.GenKeysBtn.Click += new System.EventHandler(this.GenKeysBtn_Click);
             // 
             // KeysLbl
             // 
@@ -503,22 +521,6 @@
             this.TXTInputBtn.Text = "Ввести из текстового документа";
             this.TXTInputBtn.UseVisualStyleBackColor = false;
             this.TXTInputBtn.Click += new System.EventHandler(this.TXTInputBtn_Click);
-            // 
-            // WordInputBtn
-            // 
-            this.WordInputBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.WordInputBtn.BackColor = System.Drawing.Color.Gray;
-            this.WordInputBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WordInputBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WordInputBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WordInputBtn.ForeColor = System.Drawing.Color.White;
-            this.WordInputBtn.Location = new System.Drawing.Point(3, 3);
-            this.WordInputBtn.Name = "WordInputBtn";
-            this.WordInputBtn.Size = new System.Drawing.Size(308, 23);
-            this.WordInputBtn.TabIndex = 1;
-            this.WordInputBtn.Text = "Ввести из документа MS Word";
-            this.WordInputBtn.UseVisualStyleBackColor = false;
-            this.WordInputBtn.Click += new System.EventHandler(this.WordInputBtn_Click);
             // 
             // OperateBtn
             // 
@@ -623,6 +625,16 @@
             this.TXTOutputBtn.UseVisualStyleBackColor = false;
             this.TXTOutputBtn.Click += new System.EventHandler(this.TXTOutputBtn_Click);
             // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.StatusLbl.Location = new System.Drawing.Point(12, 356);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(0, 17);
+            this.StatusLbl.TabIndex = 15;
+            // 
             // WordOutputBtn
             // 
             this.WordOutputBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -639,15 +651,21 @@
             this.WordOutputBtn.UseVisualStyleBackColor = false;
             this.WordOutputBtn.Click += new System.EventHandler(this.WordOutputBtn_Click);
             // 
-            // StatusLbl
+            // WordInputBtn
             // 
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.StatusLbl.Location = new System.Drawing.Point(12, 356);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(0, 17);
-            this.StatusLbl.TabIndex = 15;
+            this.WordInputBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.WordInputBtn.BackColor = System.Drawing.Color.Gray;
+            this.WordInputBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.WordInputBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WordInputBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WordInputBtn.ForeColor = System.Drawing.Color.White;
+            this.WordInputBtn.Location = new System.Drawing.Point(3, 3);
+            this.WordInputBtn.Name = "WordInputBtn";
+            this.WordInputBtn.Size = new System.Drawing.Size(308, 23);
+            this.WordInputBtn.TabIndex = 1;
+            this.WordInputBtn.Text = "Ввести из документа MS Word";
+            this.WordInputBtn.UseVisualStyleBackColor = false;
+            this.WordInputBtn.Click += new System.EventHandler(this.WordInputBtn_Click);
             // 
             // MainForm
             // 
@@ -672,7 +690,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "EnDeCoder";
             this.KeysPanel.ResumeLayout(false);
             this.KeysPanel.PerformLayout();
             this.DataInputPanel.ResumeLayout(false);
@@ -694,7 +712,6 @@
         private System.Windows.Forms.Label InputDataLbl;
         private System.Windows.Forms.Panel DataInputPanel;
         private System.Windows.Forms.Button GenKeysBtn;
-        private System.Windows.Forms.Button WordInputBtn;
         private System.Windows.Forms.Button TXTInputBtn;
         private System.Windows.Forms.Button KeyboardInputBtn;
         private System.Windows.Forms.Button OperateBtn;
@@ -705,12 +722,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button ScreenOutputBtn;
         private System.Windows.Forms.Button TXTOutputBtn;
-        private System.Windows.Forms.Button WordOutputBtn;
         private System.Windows.Forms.Label SelectedOFileLbl;
         private System.Windows.Forms.Label SelectedIFileLbl;
         private System.Windows.Forms.Label StatusLbl;
         private System.Windows.Forms.Label EncodingTypeLbl;
-        private System.Windows.Forms.ComboBox EncodingTypeBox;
         private System.Windows.Forms.Label Key1Lbl;
         private System.Windows.Forms.TextBox Key1TBox;
         private System.Windows.Forms.TextBox Key2TBox;
@@ -729,6 +744,9 @@
         private System.Windows.Forms.Label Key3Lbl;
         private System.Windows.Forms.Button ClearBtn;
         private System.Windows.Forms.Panel KeysPanel;
+        private System.Windows.Forms.ComboBox EncodingTypeBox;
+        private System.Windows.Forms.Button WordInputBtn;
+        private System.Windows.Forms.Button WordOutputBtn;
     }
 }
 

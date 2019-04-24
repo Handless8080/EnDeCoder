@@ -49,12 +49,58 @@ namespace EnDeCoder
             this.parent = parent;
             isInputForm = false;
 
-            MessageInput.Text = "Ключи:\r\n\r\n";
+            MessageInput.Text = "Метод шифрования: " + descriptions[descriptions.Length - 1] + "\r\n\r\n";
+            MessageInput.Text += "Ключи:\r\n\r\n";
             for (int i = 0; i < keys.Length; i++)
             {
-                MessageInput.Text += descriptions[i] + " " + keys[i] + "\r\n";
+                MessageInput.Text += descriptions[i] + ": " + keys[i] + "\r\n";
             }
-            MessageInput.Text += "\r\nПолученные текстовые данные:\r\n" + message;
+            MessageInput.Text += "\r\nПолученные текстовые данные:\r\n\r\n" + message;
+
+            EnterBtn.BackColor = Color.Green;
+            EnterBtn.Enabled = true;
+            EnterBtn.Text = "Скопировать";
+
+            MessageInput.ReadOnly = true;
+        }
+
+        /// <summary>
+        ///     Создает форму и заполняет ее переданными данными
+        /// </summary>
+        /// 
+        /// <param name="parent">
+        ///     Ссылка на родительскую форму
+        /// </param>
+        /// 
+        /// <param name="descriptions">
+        ///     Описания ключей
+        /// </param>
+        /// 
+        /// <param name="keys">
+        ///     Ключи
+        /// </param>
+        /// 
+        /// <param name="message">
+        ///     Полученная информация в виде последовательности байтов
+        /// </param>
+        public MessageForm(MainForm parent, string[] descriptions, object[] keys, byte[] message)
+        {
+            InitializeComponent();
+
+            this.parent = parent;
+            isInputForm = false;
+
+            MessageInput.Text = "Метод шифрования: " + descriptions[descriptions.Length - 1] + "\r\n\r\n";
+            MessageInput.Text += "Ключи:\r\n\r\n";
+            for (int i = 0; i < keys.Length; i++)
+            {
+                MessageInput.Text += descriptions[i] + ": " + keys[i] + "\r\n";
+            }
+            MessageInput.Text += "\r\nПолученные текстовые данные:\r\n\r\n" + message.Length;
+            foreach (byte b in message)
+            {
+                MessageInput.Text += "\r\n" + b;
+            }
 
             EnterBtn.BackColor = Color.Green;
             EnterBtn.Enabled = true;
@@ -121,7 +167,24 @@ namespace EnDeCoder
         {
             if (isInputForm)
             {
-                parent.message = MessageInput.Text;
+                try
+                {
+                    var strings = MessageInput.Text.Split('\r', '\n');
+                    int size = Convert.ToInt32(strings[0]);
+                    parent.messageInBytes = new byte[size];
+
+                    for (int i = 0; i < size; i++)
+                    {
+                        parent.messageInBytes[i] = Convert.ToByte(strings[(i + 1) * 2]);
+                    }
+
+                    parent.message = null;
+                }
+                catch
+                {
+                    parent.messageInBytes = null;
+                    parent.message = MessageInput.Text;
+                }
 
                 Close();
             }
